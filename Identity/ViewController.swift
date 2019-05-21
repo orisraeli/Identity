@@ -20,6 +20,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let checkmarkSign = UIImage(named:"checkmark")
     let xSign = UIImage(named:"x")
     var idString = ""
+    var validationResult = false
+    var didStringFail = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,20 +39,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //read text input
         idString = idInput.text!
         
-        //check if string is ok
-        if Int(idString) == nil || idString.isEmpty || idString.count < 5 || idString.count > 9 {
-            resultLabel.text = "ERROR"
-            print("error: string is bad")
-            resultView.backgroundColor = UIColor(red: 259/255.0, green: 21/255.0, blue: 29/255.0, alpha: 1.0)
-            signImageView.image = xSign
+        //check if string is bad
+        if Int(idString) == nil || idString.isEmpty || idString.count < 6 || idString.count > 9 {
+            didStringFail = true
+            printResult()
         }
             
         else {
+            validateID()
             printResult()
             //dismiss keyboard
             idInput.resignFirstResponder()
         }
-    
     }
     
     func validateID() -> Bool {
@@ -88,33 +88,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         print("result: \(idArray)")
         print("total: \(total)")
-        idArray = []
+        idArray.removeAll()
     
         if total > 0 && total % 10 == 0 {
-            return true
+            validationResult = true
         }
-            
         else {
-            return false
+            validationResult = false
         }
+        return validationResult
     }
     
         func printResult(){
-            if validateID() {
+            if validationResult {
+                print("id valid")
                 resultView.backgroundColor = UIColor(red: 39/255.0, green: 200/255.0, blue: 45/255.0, alpha: 1.0)
                 signImageView.image = checkmarkSign
                 resultLabel.text = "The ID number is valid."
-                print("id valid")
+                
             }
             else {
                 resultView.backgroundColor = UIColor(red: 259/255.0, green: 21/255.0, blue: 29/255.0, alpha: 1.0)
                 signImageView.image = xSign
-                resultLabel.text = "The ID number is invalid."
-                print("id invalid")
+                if didStringFail {
+                    print(didStringFail, "error: string is bad")
+                    resultLabel.text = "ERROR"
+                }
+                else {
+                    print("id invalid")
+                    resultLabel.text = "The ID number is invalid."
+                }
             }
+            didStringFail = false
+            validationResult = false
         }
    
-    
     //dismiss keyboard when user touch blank spots
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
@@ -126,6 +134,5 @@ class ViewController: UIViewController, UITextFieldDelegate {
         idInput.resignFirstResponder()
         return true
     }
-    
 }
 
