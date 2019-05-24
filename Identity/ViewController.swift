@@ -17,8 +17,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var signImageView: UIImageView!
     @IBOutlet weak var creditsText: UITextView!
     
-    let checkmarkSign = UIImage(named:"checkmark")
-    let xSign = UIImage(named:"x")
     var idString = ""
     var validationResult = false
     var didStringFail = false
@@ -40,44 +38,44 @@ class ViewController: UIViewController, UITextFieldDelegate {
         idString = idInput.text!
         
         //check if string is bad
-        if Int(idString) == nil || idString.isEmpty || idString.count < 6 || idString.count > 9 {
+        if Int(idString) == nil || idString.isEmpty || idString.count < 5 || idString.count > 9 {
             didStringFail = true
             printResult()
         }
-            
         else {
             validateID()
             printResult()
-            //dismiss keyboard
-            idInput.resignFirstResponder()
         }
+        
+        //dismiss keyboard
+        idInput.resignFirstResponder()
     }
     
-    func validateID() -> Bool {
-        
-         var idArray = [Int]()
+    func validateID(){
     
-        //if string is shorter than 9, fill it with zero's to length
+        //fill string with 0 if shorter than 9 chars
         var fillerCount = 9-idString.count
         while fillerCount > 0 {
             fillerCount -= 1
             idString = "0" + idString
-            idInput.text = idString
         }
+        idInput.text = idString
         
         //adds to array
+        var idArray = [Int]()
         for char in idString {
             idArray.append(Int(String(char))!)
         }
+        print("array before calc:\(idArray)")
         
         //validation algorithm
         var i = 0
         var total = 0
         for element in idArray {
-            //mutiply every other array index in 2
+            //mutiply every other(odd) array index in 2
             if i % 2 != 0 {
                 idArray[i] = element * 2
-                //convert 2 digits to 1 digit
+                //if larger than 10, sum the numbers
                 if idArray[i] >= 10 {
                     let remainder = idArray[i] % 10
                     idArray[i] = remainder + 1
@@ -86,8 +84,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             total = total + idArray[i]
             i += 1
         }
-        print("result: \(idArray)")
-        print("total: \(total)")
+        print("array after calc:\(idArray),total:\(total)")
         idArray.removeAll()
     
         if total > 0 && total % 10 == 0 {
@@ -96,27 +93,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
         else {
             validationResult = false
         }
-        return validationResult
     }
     
         func printResult(){
             if validationResult {
                 print("id valid")
-                resultView.backgroundColor = UIColor(red: 39/255.0, green: 200/255.0, blue: 45/255.0, alpha: 1.0)
-                signImageView.image = checkmarkSign
-                resultLabel.text = "The ID number is valid."
+                resultView.backgroundColor = #colorLiteral(red: 0.07961467654, green: 0.7918785214, blue: 0.1005088463, alpha: 1)
+                signImageView.image = #imageLiteral(resourceName: "checkmark")
+                resultLabel.text = "ID number is valid."
                 
             }
             else {
-                resultView.backgroundColor = UIColor(red: 259/255.0, green: 21/255.0, blue: 29/255.0, alpha: 1.0)
-                signImageView.image = xSign
+                resultView.backgroundColor = #colorLiteral(red: 0.9876261353, green: 0.04807233065, blue: 0.01810991764, alpha: 1)
+                signImageView.image = #imageLiteral(resourceName: "x")
                 if didStringFail {
-                    print(didStringFail, "error: string is bad")
-                    resultLabel.text = "ERROR"
+                    print("error: string is bad")
+                    resultLabel.text = "Please use the correct format."
                 }
                 else {
                     print("id invalid")
-                    resultLabel.text = "The ID number is invalid."
+                    resultLabel.text = "ID number is invalid."
                 }
             }
             didStringFail = false
@@ -128,11 +124,5 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    //run check button event when user press enter + dismiss keyboard
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        didPressCheck((Any).self)
-        idInput.resignFirstResponder()
-        return true
-    }
 }
 
