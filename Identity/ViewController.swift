@@ -6,6 +6,8 @@
 //  Copyright © 2019 Or Israeli. All rights reserved.
 //
 
+//dummy id number for testing: 789621349
+
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
@@ -69,21 +71,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print("array before calc:\(idArray)")
         
         //validation algorithm
-        var i = 0
         var total = 0
-        for element in idArray {
+        for (index, value) in idArray.enumerated() {
             //mutiply every other(odd) array index in 2
-            if i % 2 != 0 {
-                idArray[i] = element * 2
+            if index % 2 != 0 {
+                idArray[index] = value * 2
                 //if larger than 10, sum the numbers
-                if idArray[i] >= 10 {
-                    let remainder = idArray[i] % 10
-                    idArray[i] = remainder + 1
+                if idArray[index] >= 10 {
+                    let remainder = idArray[index] % 10
+                    idArray[index] = remainder + 1
                 }
             }
-            total = total + idArray[i]
-            i += 1
+            total = total + idArray[index]
         }
+        
         print("array after calc:\(idArray),total:\(total)")
         idArray.removeAll()
     
