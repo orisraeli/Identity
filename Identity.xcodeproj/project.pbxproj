@@ -12,7 +12,7 @@
 		451542A1228F050300309AA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4515429F228F050300309AA8 /* LaunchScreen.storyboard */; };
 		451542AC228F050400309AA8 /* IdentityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451542AB228F050400309AA8 /* IdentityTests.swift */; };
 		451542B7228F050400309AA8 /* IdentityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451542B6228F050400309AA8 /* IdentityUITests.swift */; };
-		4539D86B22CF868A00359775 /* IdentityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539D86A22CF868A00359775 /* IdentityViewController.swift */; };
+		453F6F7422CF8C8F00CDC48C /* IdentityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F6F7322CF8C8F00CDC48C /* IdentityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +44,7 @@
 		451542B2228F050400309AA8 /* IdentityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		451542B6228F050400309AA8 /* IdentityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityUITests.swift; sourceTree = "<group>"; };
 		451542B8228F050400309AA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4539D86A22CF868A00359775 /* IdentityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdentityViewController.swift; path = "../../Identity 2/Identity/IdentityViewController.swift"; sourceTree = "<group>"; };
+		453F6F7322CF8C8F00CDC48C /* IdentityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				45154296228F050200309AA8 /* AppDelegate.swift */,
-				4539D86A22CF868A00359775 /* IdentityViewController.swift */,
+				453F6F7322CF8C8F00CDC48C /* IdentityViewController.swift */,
 				4515429D228F050300309AA8 /* Assets.xcassets */,
 				4515429F228F050300309AA8 /* LaunchScreen.storyboard */,
 				451542A2228F050400309AA8 /* Info.plist */,
@@ -253,7 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45154297228F050200309AA8 /* AppDelegate.swift in Sources */,
-				4539D86B22CF868A00359775 /* IdentityViewController.swift in Sources */,
+				453F6F7422CF8C8F00CDC48C /* IdentityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
