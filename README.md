@@ -23,6 +23,6 @@ Release v2 has a lot of new features:
 To install simply clone/download the repository and open with Xcode.
 You can use this dummy Israeli ID number for testing purposes: 789621349.
 
-You can check the main source code file here: [IdentityViewController.swift](/Identity/Identity/IdentityViewController.swift).
+You can check the main source code file here: [IdentityViewController.swift](/Identity/IdentityViewController.swift).
 
 Feel free to pull request, create a new issue or contact me with any questions or suggestions. I'll be happy to help. 
