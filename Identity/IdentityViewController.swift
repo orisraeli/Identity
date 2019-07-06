@@ -114,7 +114,7 @@ class IdentityViewController: UIViewController {
         
         We do not store your information and never connect or send it to the internet.
         
-        This is an open-source project you can take a look at https://github.com/orisraeli/ValidateID
+        This is an open-source project you can take a look at https://github.com/orisraeli/Identity
         """
         footerText.text = "Made with ❤︎ by Or Israeli | https://orisraeli.com"
         footerText.textAlignment = .center

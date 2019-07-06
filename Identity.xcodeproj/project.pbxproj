@@ -13,6 +13,8 @@
 		451542AC228F050400309AA8 /* IdentityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451542AB228F050400309AA8 /* IdentityTests.swift */; };
 		451542B7228F050400309AA8 /* IdentityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451542B6228F050400309AA8 /* IdentityUITests.swift */; };
 		453F6F7422CF8C8F00CDC48C /* IdentityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F6F7322CF8C8F00CDC48C /* IdentityViewController.swift */; };
+		453F6F7722CF8E3500CDC48C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 453F6F7622CF8E3500CDC48C /* README.md */; };
+		453F6F7922D09A9300CDC48C /* screenshot_identity_v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 453F6F7822D09A9300CDC48C /* screenshot_identity_v2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		451542B6228F050400309AA8 /* IdentityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityUITests.swift; sourceTree = "<group>"; };
 		451542B8228F050400309AA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		453F6F7322CF8C8F00CDC48C /* IdentityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentityViewController.swift; sourceTree = "<group>"; };
+		453F6F7622CF8E3500CDC48C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		453F6F7822D09A9300CDC48C /* screenshot_identity_v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot_identity_v2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 		4515428A228F050200309AA8 = {
 			isa = PBXGroup;
 			children = (
+				453F6F7622CF8E3500CDC48C /* README.md */,
+				453F6F7822D09A9300CDC48C /* screenshot_identity_v2.png */,
 				45154295228F050200309AA8 /* Identity */,
 				451542AA228F050400309AA8 /* IdentityTests */,
 				451542B5228F050400309AA8 /* IdentityUITests */,
@@ -227,7 +233,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				451542A1228F050300309AA8 /* LaunchScreen.storyboard in Resources */,
+				453F6F7722CF8E3500CDC48C /* README.md in Resources */,
 				4515429E228F050300309AA8 /* Assets.xcassets in Resources */,
+				453F6F7922D09A9300CDC48C /* screenshot_identity_v2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
