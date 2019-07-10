@@ -20,9 +20,9 @@ class IdentityViewController: UIViewController {
     let resultLabel = UILabel()
     let footerText = UITextView()
     
-    var idString = ""
-    var validationResult = false
-    var didStringFail = false
+    var idString: String = ""
+    var validationResult: Bool = false
+    var didStringFail: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ class IdentityViewController: UIViewController {
     func setupCheckButton() {
         checkButton.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         checkButton.setTitle("CHECK", for: .normal)
-        checkButton.layer.cornerRadius = 5
+        checkButton.layer.cornerRadius = 10
         checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
         
         view.addSubview(checkButton)
@@ -71,7 +71,9 @@ class IdentityViewController: UIViewController {
     
     @objc func checkButtonTapped(){
         //read text input
-        idString = idTextField.text!
+        guard let stringFromTextField: String = idTextField.text
+            else { return print("error unwrapping textfield") }
+        idString = stringFromTextField
         //check if string is bad
         if Int(idString) == nil || idString.isEmpty || idString.count < 5 || idString.count > 9 {
             didStringFail = true
@@ -188,29 +190,26 @@ class IdentityViewController: UIViewController {
     
     func validateID(){
         //fill string with 0 if shorter than 9 chars
-        var fillerCount = 9-idString.count
+        var fillerCount: Int = 9-idString.count
         while fillerCount > 0 {
             fillerCount -= 1
             idString = "0" + idString
         }
         idTextField.text = idString
         
-        //adds to array
-        var idArray = [Int]()
-        for char in idString {
-            idArray.append(Int(String(char))!)
-        }
+        //converts string into an int array
+        var idArray: [Int] = idString.compactMap{Int(String($0))}
         print("array before calc:\(idArray)")
         
         //validation algorithm
-        var total = 0
+        var total: Int = 0
         for (index, value) in idArray.enumerated() {
             //mutiply every other(odd) array index in 2
             if index % 2 != 0 {
                 idArray[index] = value * 2
                 //if larger than 10, sum the numbers
                 if idArray[index] >= 10 {
-                    let remainder = idArray[index] % 10
+                    let remainder: Int = idArray[index] % 10
                     idArray[index] = remainder + 1
                 }
             }
