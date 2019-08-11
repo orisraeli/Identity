@@ -21,8 +21,7 @@ class IdentityViewController: UIViewController {
     let footerText = UITextView()
     
     var idString: String = ""
-    var validationResult: Bool = false
-    var didStringFail: Bool = false
+    var id = Validation(idString: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,16 +72,9 @@ class IdentityViewController: UIViewController {
         //read text input
         guard let stringFromTextField: String = idTextField.text
             else { return print("error unwrapping textfield") }
-        idString = stringFromTextField
-        //check if string is bad
-        if Int(idString) == nil || idString.isEmpty || idString.count < 5 || idString.count > 9 {
-            didStringFail = true
-            printResult()
-        }
-        else {
-            validateID()
-            printResult()
-        }
+        
+        id = Validation(idString: stringFromTextField)
+        printResult(result: id.validateID())
     }
     
     func setupTitleLabel() {
@@ -102,8 +94,7 @@ class IdentityViewController: UIViewController {
     }
     
     func setupTextViews() {
-        let txtViews: [UITextView] = [infoText,footerText]
-        for txtView in txtViews {
+        for txtView in [infoText,footerText] {
             txtView.font = .systemFont(ofSize: 14)
             txtView.isEditable = false
             txtView.textColor = .lightGray
@@ -188,67 +179,18 @@ class IdentityViewController: UIViewController {
         
     }
     
-    func validateID(){
-        //fill string with 0 if shorter than 9 chars
-        var fillerCount: Int = 9-idString.count
-        while fillerCount > 0 {
-            fillerCount -= 1
-            idString = "0" + idString
-        }
-        idTextField.text = idString
-        
-        //converts string into an int array
-        var idArray: [Int] = idString.compactMap{Int(String($0))}
-        print("array before calc:\(idArray)")
-        
-        //validation algorithm
-        var total: Int = 0
-        for (index, value) in idArray.enumerated() {
-            //mutiply every other(odd) array index in 2
-            if index % 2 != 0 {
-                idArray[index] = value * 2
-                //if larger than 10, sum the numbers
-                if idArray[index] >= 10 {
-                    let remainder: Int = idArray[index] % 10
-                    idArray[index] = remainder + 1
-                }
-            }
-            total = total + idArray[index]
-        }
-        print("array after calc:\(idArray),total:\(total)")
-        idArray.removeAll()
-        
-        if total > 0 && total % 10 == 0 {
-            validationResult = true
-        }
-        else {
-            validationResult = false
-        }
-    }
-    
-    func printResult(){
-        if validationResult {
-            print("id valid")
+    func printResult(result: Bool) {
+        resultLabel.text = id.idResultText
+        if result {
             resultView.backgroundColor = #colorLiteral(red: 0.07961467654, green: 0.7918785214, blue: 0.1005088463, alpha: 1)
             resultImageView.image = #imageLiteral(resourceName: "checkmark")
-            resultLabel.text = "ID number is valid."
-            //dismiss keyboard
+            
             idTextField.resignFirstResponder()
         }
         else {
             resultView.backgroundColor = #colorLiteral(red: 0.9876261353, green: 0.04807233065, blue: 0.01810991764, alpha: 1)
             resultImageView.image = #imageLiteral(resourceName: "x")
-            if didStringFail {
-                print("error: string is bad")
-                resultLabel.text = "Please use the correct format."
-            }
-            else {
-                print("id invalid")
-                resultLabel.text = "ID number is invalid."
-            }
         }
-        didStringFail = false
-        validationResult = false
     }
     
     //dismiss keyboard when user touch blank spots
